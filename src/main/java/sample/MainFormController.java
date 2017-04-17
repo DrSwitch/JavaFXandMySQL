@@ -47,6 +47,8 @@ public class MainFormController {
 
         ResultSet resultSet = statement.executeQuery("select ID_Student,FIO from infostudent.student");
 
+        IdStudent.setText("asdasd");
+        
         while( resultSet.next()) {
             String ID_Student = resultSet.getString("ID_Student");
             String FIO = resultSet.getString("FIO");
