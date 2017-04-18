@@ -11,10 +11,10 @@
    <children>
       <TableView fx:id="MainTableStudent" prefHeight="186.0" prefWidth="600.0">
         <columns>
-          <TableColumn fx:id="IdStudent" prefWidth="94.0" text="IdStudent" />
-          <TableColumn fx:id="FIO" minWidth="1.0" prefWidth="56.0" text="FIO" />
-          <TableColumn fx:id="IdCity" prefWidth="78.0" text="IdCity" />
-          <TableColumn fx:id="Address" prefWidth="102.0" text="Address" />
+          <TableColumn fx:id="IdStudentCol" prefWidth="94.0" text="IdStudent" />
+          <TableColumn fx:id="FIOCol" minWidth="1.0" prefWidth="56.0" text="FIO" />
+          <TableColumn fx:id="IdCityCol" prefWidth="78.0" text="IdCity" />
+          <TableColumn fx:id="AddressCol" prefWidth="102.0" text="Address" />
         </columns>
       </TableView>
       <HBox prefHeight="45.0" prefWidth="535.0">

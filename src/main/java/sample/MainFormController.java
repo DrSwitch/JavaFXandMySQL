@@ -13,6 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
+import pojo.Student;
 
 import java.sql.*;
 
@@ -25,17 +26,17 @@ public class MainFormController {
     @FXML
     private Label LabelHello;
     @FXML
-    private TableView MainTableStudent;
+    private TableView<Student> MainTableStudent;
     @FXML
-    private TableColumn IdStudent;
+    private TableColumn<Student, Integer> IdStudentCol;
     @FXML
-    private TableColumn FIO;
+    private TableColumn<Student, String> FIOCol;
     @FXML
-    private TableColumn IdCity;
+    private TableColumn<Student, Integer> IdCityCol;
     @FXML
-    private TableColumn Address;
+    private TableColumn<Student, String> AddressCol;
 
-    private ObservableList userObservableList;
+    private ObservableList<Student> userObservableList;
 
     public void btnclick(ActionEvent actionEvent)throws ClassNotFoundException, SQLException{
 
@@ -45,17 +46,20 @@ public class MainFormController {
         //selectAll(connect);
         Statement statement = connect.createStatement();
 
-        ResultSet resultSet = statement.executeQuery("select ID_Student,FIO from infostudent.student");
+        ResultSet resultSet = statement.executeQuery("select ID_Student,FIO,address,idcity from infostudent.student");
 
-        IdStudent.setText("asdasd");
-        
+        IdStudentCol.setText("fdgsdf");
+
         while( resultSet.next()) {
-            String ID_Student = resultSet.getString("ID_Student");
-            String FIO = resultSet.getString("FIO");
+
+            IdStudentCol.setCellValueFactory(new  PropertyValueFactory<Student, Integer>("ID_Student"));
+            FIOCol.setCellValueFactory(new  PropertyValueFactory<Student, String>("FIO"));
+            AddressCol.setCellValueFactory(new  PropertyValueFactory<Student, String>("address"));
+            IdCityCol.setCellValueFactory(new  PropertyValueFactory<Student, Integer>("idcity"));
 
 
-            System.out.println( "ID_Student: | FIO:" );
-            System.out.println( ID_Student +" | "+ FIO );
+            MainTableStudent.setItems(userObservableList);
+
         }
 
         connect.close();
@@ -63,8 +67,4 @@ public class MainFormController {
         LabelHello.setText(LabelHello.getText()+"Hello World");
     }
 
-    private static void selectAll( java.sql.Connection conn ) throws SQLException {
-
-
-    }
 }
