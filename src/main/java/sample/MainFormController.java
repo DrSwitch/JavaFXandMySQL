@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import pojo.Student;
 
 import java.sql.*;
+import java.util.List;
 
 //логика взаимодействия с MainForm.fxml
 public class MainFormController {
@@ -40,7 +41,6 @@ public class MainFormController {
 
     public void btnclick(ActionEvent actionEvent)throws ClassNotFoundException, SQLException{
 
-
         Class.forName( "com.mysql.jdbc.Driver" );
         Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         //selectAll(connect);
@@ -48,22 +48,22 @@ public class MainFormController {
 
         ResultSet resultSet = statement.executeQuery("select ID_Student,FIO,address,idcity from infostudent.student");
 
-        IdStudentCol.setText("fdgsdf");
+        // устанавливаем тип и значение которое должно хранится в колонке
+        IdStudentCol.setCellValueFactory(new  PropertyValueFactory<Student, Integer>("ID_Student"));
+        FIOCol.setCellValueFactory(new  PropertyValueFactory<Student, String>("FIO"));
+        AddressCol.setCellValueFactory(new  PropertyValueFactory<Student, String>("address"));
+        IdCityCol.setCellValueFactory(new  PropertyValueFactory<Student, Integer>("idcity"));
+
+
 
         while( resultSet.next()) {
-
-            IdStudentCol.setCellValueFactory(new  PropertyValueFactory<Student, Integer>("ID_Student"));
-            FIOCol.setCellValueFactory(new  PropertyValueFactory<Student, String>("FIO"));
-            AddressCol.setCellValueFactory(new  PropertyValueFactory<Student, String>("address"));
-            IdCityCol.setCellValueFactory(new  PropertyValueFactory<Student, Integer>("idcity"));
-
-
-            MainTableStudent.setItems(userObservableList);
+            userObservableList.add(new Student(resultSet.getInt("ID_Student"), resultSet.getString("FIO"),resultSet.getString("address"),resultSet.getInt("idcity")));
 
         }
+        // заполнение таблицы данными
+        MainTableStudent.setItems(userObservableList);
 
         connect.close();
-
         LabelHello.setText(LabelHello.getText()+"Hello World");
     }
 
