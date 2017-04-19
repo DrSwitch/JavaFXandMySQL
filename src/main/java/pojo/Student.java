@@ -4,27 +4,27 @@ package pojo;
  * Created by DrSwitch on 18.04.2017.
  */
 public class Student {
-    private int id;
+    private int ID_Student;
     private String FIO;
-    private String address;
-    private int idCity;
+    private String Address;
+    private int IdCity;
 
-    public Student(int id, String FIO, String address, int idCity) {
-        this.id = id;
+    public Student(int ID_Student, String FIO, String Address, int IdCity) {
+        this.ID_Student = ID_Student;
         this.FIO = FIO;
-        this.address = address;
-        this.idCity = idCity;
+        this.Address = Address;
+        this.IdCity = IdCity;
     }
 
     public Student() {
     }
 
-    public int getId() {
-        return id;
+    public int getID_Student() {
+        return ID_Student;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setID_Student(int ID_Student) {
+        this.ID_Student = ID_Student;
     }
 
     public String getFIO() {
@@ -35,19 +35,19 @@ public class Student {
         this.FIO = FIO;
     }
 
-    public String getaddress() {
-        return address;
+    public String getAddress() {
+        return Address;
     }
 
-    public void setaddress(String address) {
-        this.address = address;
+    public void setAddress(String Address) {
+        this.Address = Address;
     }
 
-    public int getidCity() {
-        return idCity;
+    public int getIdCity() {
+        return IdCity;
     }
 
-    public void setidCity(int idCity) {
-        this.idCity = idCity;
+    public void setIdCity(int IdCity) {
+        this.IdCity = IdCity;
     }
 }

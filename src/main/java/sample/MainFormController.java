@@ -33,11 +33,11 @@ public class MainFormController {
     @FXML
     private TableColumn<Student, String> FIOCol;
     @FXML
-    private TableColumn<Student, Integer> IdCityCol;
-    @FXML
     private TableColumn<Student, String> AddressCol;
+    @FXML
+    private TableColumn<Student, Integer> IdCityCol;
 
-    private ObservableList<Student> userObservableList;
+    private ObservableList<Student> userObservableList = FXCollections.observableArrayList();;
 
     public void btnclick(ActionEvent actionEvent)throws ClassNotFoundException, SQLException{
 
@@ -46,25 +46,31 @@ public class MainFormController {
         //selectAll(connect);
         Statement statement = connect.createStatement();
 
-        ResultSet resultSet = statement.executeQuery("select ID_Student,FIO,address,idcity from infostudent.student");
+        ResultSet resultSet = statement.executeQuery("select ID_Student,FIO,Address,idcity from infostudent.student");
 
         // устанавливаем тип и значение которое должно хранится в колонке
         IdStudentCol.setCellValueFactory(new  PropertyValueFactory<Student, Integer>("ID_Student"));
         FIOCol.setCellValueFactory(new  PropertyValueFactory<Student, String>("FIO"));
-        AddressCol.setCellValueFactory(new  PropertyValueFactory<Student, String>("address"));
-        IdCityCol.setCellValueFactory(new  PropertyValueFactory<Student, Integer>("idcity"));
+        AddressCol.setCellValueFactory(new  PropertyValueFactory<Student, String>("Address"));
+        IdCityCol.setCellValueFactory(new  PropertyValueFactory<Student, Integer>("IdCity"));
 
-
+        //чистим обсерваблелист перед заполнением
+        userObservableList.clear();
 
         while( resultSet.next()) {
-            userObservableList.add(new Student(resultSet.getInt("ID_Student"), resultSet.getString("FIO"),resultSet.getString("address"),resultSet.getInt("idcity")));
-
+          // System.out.println(resultSet.getInt("ID_Student")+"  "+ resultSet.getString("FIO"));
+            //заполняется обсерваблелист, что бы его потом вывести в tableview
+            userObservableList.add(new Student(resultSet.getInt("ID_Student"),
+                    resultSet.getString("FIO"),
+                    resultSet.getString("Address"),
+                    resultSet.getInt("IdCity")));
         }
-        // заполнение таблицы данными
+
+        // выводим обсерваблелист в tableview
         MainTableStudent.setItems(userObservableList);
 
         connect.close();
-        LabelHello.setText(LabelHello.getText()+"Hello World");
+      //  LabelHello.setText(LabelHello.getText()+"Hello World");
     }
 
 }

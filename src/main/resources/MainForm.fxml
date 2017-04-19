@@ -13,8 +13,8 @@
         <columns>
           <TableColumn fx:id="IdStudentCol" prefWidth="94.0" text="IdStudent" />
           <TableColumn fx:id="FIOCol" minWidth="1.0" prefWidth="56.0" text="FIO" />
-          <TableColumn fx:id="IdCityCol" prefWidth="78.0" text="IdCity" />
-          <TableColumn fx:id="AddressCol" prefWidth="102.0" text="Address" />
+          <TableColumn fx:id="IdCityCol" prefWidth="78.0" text="idcity" />
+          <TableColumn fx:id="AddressCol" prefWidth="102.0" text="address" />
         </columns>
       </TableView>
       <HBox prefHeight="45.0" prefWidth="535.0">
