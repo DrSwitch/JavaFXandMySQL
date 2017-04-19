@@ -56,21 +56,16 @@ public class MainFormController {
 
         //чистим обсерваблелист перед заполнением
         userObservableList.clear();
-
         while( resultSet.next()) {
-          // System.out.println(resultSet.getInt("ID_Student")+"  "+ resultSet.getString("FIO"));
             //заполняется обсерваблелист, что бы его потом вывести в tableview
             userObservableList.add(new Student(resultSet.getInt("ID_Student"),
                     resultSet.getString("FIO"),
                     resultSet.getString("Address"),
                     resultSet.getInt("IdCity")));
         }
-
         // выводим обсерваблелист в tableview
         MainTableStudent.setItems(userObservableList);
-
         connect.close();
-      //  LabelHello.setText(LabelHello.getText()+"Hello World");
     }
 
 }
