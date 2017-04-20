@@ -25,15 +25,15 @@ public class MainFormController {
     @FXML
     private TextField tfIdCity;
     @FXML
-    private TableView<Student> MainTableStudent;
+    private TableView<Student> tvMainTableStudent;
     @FXML
-    private TableColumn<Student, Integer> IdStudentCol;
+    private TableColumn<Student, Integer> tcIdStudent;
     @FXML
-    private TableColumn<Student, String> FIOCol;
+    private TableColumn<Student, String> tcFIO;
     @FXML
-    private TableColumn<Student, String> AddressCol;
+    private TableColumn<Student, String> tcAddress;
     @FXML
-    private TableColumn<Student, Integer> IdCityCol;
+    private TableColumn<Student, Integer> tcIdCity;
 
     private ObservableList<Student> userObservableList = FXCollections.observableArrayList();
 
@@ -49,13 +49,13 @@ public class MainFormController {
             userObservableList.add(new Student(student.getIdstudent(), student.getFio(), student.getAddress(), student.getIdcity()));
         }
 
-        MainTableStudent.setItems(userObservableList);
-        MainTableStudent.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        tvMainTableStudent.setItems(userObservableList);
+        tvMainTableStudent.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        IdStudentCol.setCellValueFactory(new PropertyValueFactory<Student, Integer>("ID_Student"));
-        FIOCol.setCellValueFactory(new PropertyValueFactory<Student, String>("FIO"));
-        AddressCol.setCellValueFactory(new PropertyValueFactory<Student, String>("Address"));
-        IdCityCol.setCellValueFactory(new PropertyValueFactory<Student, Integer>("IdCity"));
+        tcIdStudent.setCellValueFactory(new PropertyValueFactory<Student, Integer>("ID_Student"));
+        tcFIO.setCellValueFactory(new PropertyValueFactory<Student, String>("FIO"));
+        tcAddress.setCellValueFactory(new PropertyValueFactory<Student, String>("Address"));
+        tcIdCity.setCellValueFactory(new PropertyValueFactory<Student, Integer>("IdCity"));
     }
 
     public  void Insertbtnclick(ActionEvent actionEvent){

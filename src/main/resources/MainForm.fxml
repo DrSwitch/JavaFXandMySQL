@@ -9,12 +9,12 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="400.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainFormController">
    <children>
-      <TableView fx:id="MainTableStudent" prefHeight="186.0" prefWidth="600.0">
+      <TableView fx:id="tvMainTableStudent" prefHeight="186.0" prefWidth="600.0">
         <columns>
-          <TableColumn fx:id="IdStudentCol" prefWidth="94.0" text="IdStudent" />
-          <TableColumn fx:id="FIOCol" minWidth="1.0" prefWidth="56.0" text="FIO" />
-          <TableColumn fx:id="IdCityCol" prefWidth="78.0" text="idcity" />
-          <TableColumn fx:id="AddressCol" prefWidth="102.0" text="address" />
+          <TableColumn fx:id="tcIdStudent" prefWidth="94.0" text="IdStudent" />
+          <TableColumn fx:id="tcFIO" minWidth="1.0" prefWidth="56.0" text="FIO" />
+          <TableColumn fx:id="tcIdCity" prefWidth="78.0" text="idcity" />
+          <TableColumn fx:id="tcAddress" prefWidth="102.0" text="address" />
         </columns>
       </TableView>
       <HBox prefHeight="45.0" prefWidth="535.0">
