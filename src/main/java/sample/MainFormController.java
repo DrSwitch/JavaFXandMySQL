@@ -1,31 +1,29 @@
 package sample;
-import BDConnection.BDWork;
-import BDConnection.StudentEntity;
-import javafx.application.Application;
+import BDConnection.StudentServiceImpl;
+import entity.StudentEntity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
-import javafx.scene.control.Label;
 import pojo.Student;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
-import java.sql.*;
 import java.util.List;
 
 //логика взаимодействия с MainForm.fxml
 public class MainFormController {
 
+    @FXML
+    private TextField tfID_Student;
+    @FXML
+    private TextField tfFIO;
+    @FXML
+    private TextField tfAddress;
+    @FXML
+    private TextField tfIdCity;
     @FXML
     private TableView<Student> MainTableStudent;
     @FXML
@@ -39,7 +37,7 @@ public class MainFormController {
 
     private ObservableList<Student> userObservableList = FXCollections.observableArrayList();
 
-    private BDWork bdWork = new BDWork();
+    private StudentServiceImpl bdWork = new StudentServiceImpl();
 
     public void btnclick(ActionEvent actionEvent){
 
@@ -48,7 +46,7 @@ public class MainFormController {
         userObservableList = FXCollections.observableArrayList();
 
         for (StudentEntity student : lsStudent){
-            userObservableList.add(new Student(student.getIdStudent(), student.getFio(), student.getAddress(), student.getIdCity()));
+            userObservableList.add(new Student(student.getIdstudent(), student.getFio(), student.getAddress(), student.getIdcity()));
         }
 
         MainTableStudent.setItems(userObservableList);
@@ -58,6 +56,23 @@ public class MainFormController {
         FIOCol.setCellValueFactory(new PropertyValueFactory<Student, String>("FIO"));
         AddressCol.setCellValueFactory(new PropertyValueFactory<Student, String>("Address"));
         IdCityCol.setCellValueFactory(new PropertyValueFactory<Student, Integer>("IdCity"));
+    }
+
+    public  void Insertbtnclick(ActionEvent actionEvent){
+
+        if ((tfID_Student.getText().trim().length() > 0)
+                && (tfFIO.getText().trim().length() > 0)
+                && (tfAddress.getText().trim().length() > 0)
+                && (tfIdCity.getText().trim().length() > 0)) {
+            StudentEntity student = new StudentEntity();
+
+
+        } else {
+
+        }
+
+
+        btnclick(null);
     }
 
 }

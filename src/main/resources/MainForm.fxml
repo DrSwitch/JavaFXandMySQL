@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="400.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainFormController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="400.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainFormController">
    <children>
       <TableView fx:id="MainTableStudent" prefHeight="186.0" prefWidth="600.0">
         <columns>
@@ -22,8 +22,12 @@
             <Button fx:id="btnConnect" mnemonicParsing="false" onAction="#btnclick" text="Connect" />
             <Button mnemonicParsing="false" text="Button" />
             <Button mnemonicParsing="false" text="Button" />
-            <Button mnemonicParsing="false" text="Button" />
          </children>
       </HBox>
+      <TextField promptText="ID_Student" />
+      <TextField promptText="FIO" />
+      <TextField promptText="Address" />
+      <TextField promptText="IdCity" />
+      <Button fx:id="Insertbtn" mnemonicParsing="false" onAction="#Insertbtnclick" text="Insert" />
    </children>
 </VBox>

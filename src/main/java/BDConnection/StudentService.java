@@ -1,5 +1,7 @@
 package BDConnection;
 
+import entity.StudentEntity;
+
 import java.util.List;
 
 /**

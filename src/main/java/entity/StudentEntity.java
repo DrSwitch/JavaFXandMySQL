@@ -1,4 +1,4 @@
-package BDConnection;
+package entity;
 
 import javax.persistence.*;
 
@@ -6,26 +6,26 @@ import javax.persistence.*;
  * Created by DrSwitch on 20.04.2017.
  */
 @Entity
-@Table(name = "student", schema = "infostudent", catalog = "")
+@Table(name = "student", schema = "infostudent2", catalog = "")
 @NamedQuery(name = "StudentEntity.getAll", query = "SELECT c FROM StudentEntity  c")
 public class StudentEntity {
-    private int idStudent;
+    private int idstudent;
     private String fio;
     private String address;
-    private  int IdCity;
+    private int idcity;
 
     @Id
-    @Column(name = "ID_Student")
-    public int getIdStudent() {
-        return idStudent;
+    @Column(name = "idstudent")
+    public int getIdstudent() {
+        return idstudent;
     }
 
-    public void setIdStudent(int idStudent) {
-        this.idStudent = idStudent;
+    public void setIdstudent(int idstudent) {
+        this.idstudent = idstudent;
     }
 
     @Basic
-    @Column(name = "FIO")
+    @Column(name = "fio")
     public String getFio() {
         return fio;
     }
@@ -45,13 +45,13 @@ public class StudentEntity {
     }
 
     @Basic
-    @Column(name = "IdCity")
-    public int getIdCity() {
-        return IdCity;
+    @Column(name = "idcity")
+    public int getIdcity() {
+        return idcity;
     }
 
-    public void setIdCity(int IdCity) {
-        this.IdCity = IdCity;
+    public void setIdcity(int idcity) {
+        this.idcity = idcity;
     }
 
     @Override
@@ -61,7 +61,8 @@ public class StudentEntity {
 
         StudentEntity that = (StudentEntity) o;
 
-        if (idStudent != that.idStudent) return false;
+        if (idstudent != that.idstudent) return false;
+        if (idcity != that.idcity) return false;
         if (fio != null ? !fio.equals(that.fio) : that.fio != null) return false;
         if (address != null ? !address.equals(that.address) : that.address != null) return false;
 
@@ -70,9 +71,10 @@ public class StudentEntity {
 
     @Override
     public int hashCode() {
-        int result = idStudent;
+        int result = idstudent;
         result = 31 * result + (fio != null ? fio.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + idcity;
         return result;
     }
 }
