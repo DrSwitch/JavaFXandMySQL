@@ -25,6 +25,5 @@
             <Button mnemonicParsing="false" text="Button" />
          </children>
       </HBox>
-      <Label fx:id="LabelHello" prefHeight="17.0" prefWidth="243.0" text="Label" />
    </children>
 </VBox>

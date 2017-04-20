@@ -1,34 +1,36 @@
 package BDConnection;
 
-import java.sql.*;
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
+import java.util.List;
 
 /**
  * Created by DrSwitch on 13.04.2017.
  */
-public class BDWork {
+public class BDWork implements StudentService{
 
-    private final String URL = "jdbc:mysql://localhost:3306/infostudent";
-    private final String USERNAME = "root";
-    private final String PASSWORD = "123";
+    private EntityManager entityManager = Persistence.createEntityManagerFactory("CRUD").createEntityManager();
 
-    private Connection connection;
-
-    public void conBD() {
-
-        try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            if (!connection.isClosed()) {
-//                System.out.println("Соединение с БД установлено!");
-            } else {
-//                System.out.println("Ошибка подключения!");
-            }
-        } catch (SQLException sql) {
-            sql.printStackTrace();
-        }
+    public StudentEntity getByIdStudent(long idStudent) {
+        return null;
     }
 
-    public Connection getConnection() {
-        return connection;
+    public StudentEntity addStudent(StudentEntity student) {
+        return null;
     }
 
+    public void updateStudent(StudentEntity student) {
+
+    }
+
+    public void deleteStudent(long idStudent) {
+
+    }
+
+    public List<StudentEntity> getAllStudent(){
+        TypedQuery<StudentEntity> studentTypedQuery = entityManager.createNamedQuery("StudentEntity.getAll", StudentEntity.class);
+        return studentTypedQuery.getResultList();
+    }
 }
