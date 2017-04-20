@@ -20,7 +20,10 @@ public class StudentServiceImpl implements StudentService{
     }
 
     public StudentEntity addStudent(StudentEntity student) {
-        return null;
+        entityManager.getTransaction().begin();
+        StudentEntity studentAddDB = entityManager.merge(student);
+        entityManager.getTransaction().commit();
+        return studentAddDB;
     }
 
     public void updateStudent(StudentEntity student) {

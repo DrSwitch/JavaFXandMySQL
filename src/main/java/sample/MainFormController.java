@@ -17,8 +17,6 @@ import java.util.List;
 public class MainFormController {
 
     @FXML
-    private TextField tfID_Student;
-    @FXML
     private TextField tfFIO;
     @FXML
     private TextField tfAddress;
@@ -37,11 +35,11 @@ public class MainFormController {
 
     private ObservableList<Student> userObservableList = FXCollections.observableArrayList();
 
-    private StudentServiceImpl bdWork = new StudentServiceImpl();
+    private StudentServiceImpl studServ = new StudentServiceImpl();
 
     public void btnclick(ActionEvent actionEvent){
 
-        List<StudentEntity> lsStudent = bdWork.getAllStudent();
+        List<StudentEntity> lsStudent = studServ.getAllStudent();
 
         userObservableList = FXCollections.observableArrayList();
 
@@ -60,13 +58,14 @@ public class MainFormController {
 
     public  void Insertbtnclick(ActionEvent actionEvent){
 
-        if ((tfID_Student.getText().trim().length() > 0)
-                && (tfFIO.getText().trim().length() > 0)
-                && (tfAddress.getText().trim().length() > 0)
-                && (tfIdCity.getText().trim().length() > 0)) {
+        if ((tfFIO.getText().trim().length() > 0)
+                && (tfAddress.getText().trim().length() > 0)) {
             StudentEntity student = new StudentEntity();
+            student.setFio(tfFIO.getText());
+            student.setAddress(tfAddress.getText());
+            student.setIdcity(Integer.parseInt(tfIdCity.getText()));
 
-
+            studServ.addStudent(student);
         } else {
 
         }
