@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="400.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainFormController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="400.0" prefHeight="427.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainFormController">
    <children>
       <TableView fx:id="tvMainTableStudent" prefHeight="186.0" prefWidth="600.0">
         <columns>
@@ -28,8 +28,8 @@
       <TextField promptText="FIO" />
       <TextField promptText="Address" />
       <TextField prefHeight="25.0" prefWidth="598.0" promptText="IdCity" />
-      <ComboBox prefHeight="25.0" prefWidth="623.0" promptText="Выберете страну" />
-      <ComboBox prefHeight="25.0" prefWidth="629.0" promptText="Выберете регион" />
+      <ComboBox fx:id="cbCountry" prefHeight="25.0" prefWidth="623.0" promptText="Выберете страну" />
+      <ComboBox fx:id="cbRegion" prefHeight="25.0" prefWidth="629.0" promptText="Выберете регион" />
       <ComboBox fx:id="cbCity" prefHeight="25.0" prefWidth="649.0" promptText="Выберете город" />
       <Button fx:id="Insertbtn" mnemonicParsing="false" onAction="#Insertbtnclick" text="Insert" />
    </children>

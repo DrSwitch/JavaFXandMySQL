@@ -7,6 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "city", schema = "infostudent2", catalog = "")
+@NamedQuery(name = "CityEntity.getAll", query = "SELECT c FROM CityEntity c")
 public class CityEntity {
     private int idcity;
     private String cityname;
