@@ -15,8 +15,8 @@ public class StudentServiceImpl implements StudentService{
 
     private EntityManager entityManager = Persistence.createEntityManagerFactory("CRUD").createEntityManager();
 
-    public StudentEntity getByIdStudent(long idstudent) {
-        return null;
+    public StudentEntity getByIdStudent(int idstudent) {
+        return entityManager.find(StudentEntity.class, idstudent);
     }
 
     public StudentEntity addStudent(StudentEntity student) {
@@ -30,7 +30,7 @@ public class StudentServiceImpl implements StudentService{
 
     }
 
-    public void deleteStudent(long idStudent) {
+    public void deleteStudent(int idStudent) {
         entityManager.getTransaction().begin();
         entityManager.remove(getByIdStudent(idStudent));
         entityManager.getTransaction().commit();
