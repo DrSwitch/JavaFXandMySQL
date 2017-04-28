@@ -77,4 +77,14 @@ public class StudentEntity {
         result = 31 * result + idcity;
         return result;
     }
+
+    public StudentEntity() {
+    }
+
+    public StudentEntity(int idstudent, String fio, String address, int idcity) {
+        this.idstudent = idstudent;
+        this.fio = fio;
+        this.address = address;
+        this.idcity = idcity;
+    }
 }

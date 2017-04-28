@@ -2,25 +2,29 @@ package sample;
 import BDConnection.StudentServiceImpl;
 import BDConnection.CityServiceImpl;
 import entity.CityEntity;
-import entity.CountryEntity;
 import entity.StudentEntity;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
-import pojo.City;
-import pojo.Student;
 
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
 //логика взаимодействия с MainForm.fxml
-public class MainFormController {
+public class MainFormController  implements Initializable {
 
+    @FXML
+    private Label lbText;
     @FXML
     private TextField tfFIO;
     @FXML
@@ -28,23 +32,22 @@ public class MainFormController {
     @FXML
     private TextField tfIdCity;
     @FXML
-    private TableView<Student> tvMainTableStudent;
+    private TableView<StudentEntity> tvMainTableStudent;
     @FXML
-    private TableColumn<Student, Integer> tcIdStudent;
+    private TableColumn<StudentEntity, Integer> tcIdStudent;
     @FXML
-    private TableColumn<Student, String> tcFIO;
+    private TableColumn<StudentEntity, String> tcFIO;
     @FXML
-    private TableColumn<Student, String> tcAddress;
+    private TableColumn<StudentEntity, String> tcAddress;
     @FXML
-    private TableColumn<Student, Integer> tcIdCity;
+    private TableColumn<StudentEntity, Integer> tcIdCity;
     @FXML
-    private ComboBox<String> cbCity;
+    private ComboBox<CityEntity> cbCity;
 
 
-    private ObservableList<Student> userObservableList = FXCollections.observableArrayList();
+    private ObservableList<StudentEntity> userObservableList = FXCollections.observableArrayList();
 
-    private ObservableList<String> cityNamesObservableList;
-    private ObservableList<Integer> cityIdObservableList;
+    private ObservableList<CityEntity> cityNamesObservableList= FXCollections.observableArrayList();
 
     private StudentServiceImpl studServ = new StudentServiceImpl();
 
@@ -54,31 +57,19 @@ public class MainFormController {
        // select();
     }
 
+    //эта хрень запускается и делает код во время загруски формы или типа того
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        select();
+
+    }
+
     public void btnclick(ActionEvent actionEvent){
         select();
     }
 
-    public  void Insertbtnclick(ActionEvent actionEvent){
-
-        if ((tfFIO.getText().trim().length() > 0)
-                && (tfAddress.getText().trim().length() > 0)) {
-            StudentEntity student = new StudentEntity();
-            student.setFio(tfFIO.getText());
-            student.setAddress(tfAddress.getText());
-            student.setIdcity(Integer.parseInt(tfIdCity.getText()));
-
-            studServ.addStudent(student);
-        } else {
-
-        }
-
-        btnclick(null);
-    }
-
-
     public void select(){
         List<StudentEntity> lsStudent = studServ.getAllStudent();
-
         List<CityEntity> lsCity = cityServ.getAllcity();
 
         //инициация листа
@@ -87,28 +78,54 @@ public class MainFormController {
 
         //заполняем обсерваблелист для студента
         for (StudentEntity student : lsStudent){
-            userObservableList.add(new Student(student.getIdstudent(), student.getFio(), student.getAddress(), student.getIdcity()));
+            userObservableList.add(new StudentEntity(student.getIdstudent(), student.getFio(), student.getAddress(), student.getIdcity()));
         }
         //заполняем обсерваблелисты для города
-        for (CityEntity city : lsCity){
-            cityNamesObservableList.add(city.getCityname());
+        for (CityEntity city : lsCity) {
+            cityNamesObservableList.add(new CityEntity(city.getIdcity(),city.getCityname()));
         }
-        //заполняем обсерваблелисты для города
-        for (CityEntity city : lsCity){
-            cityIdObservableList.add(city.getIdcity());
-        }
-        //заполняем элементы на форме из обсерваблелистов
-        cbCity.getItems().addAll(cityNamesObservableList);
 
+        //заполняем кобобох из обсерваблелиста
+        cbCity.setItems(cityNamesObservableList);
+        //Заполняем таблевью из обсерваблелиста
         tvMainTableStudent.setItems(userObservableList);
+
         tvMainTableStudent.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-
-        tcIdStudent.setCellValueFactory(new PropertyValueFactory<Student, Integer>("ID_Student"));
-        tcFIO.setCellValueFactory(new PropertyValueFactory<Student, String>("FIO"));
-        tcAddress.setCellValueFactory(new PropertyValueFactory<Student, String>("Address"));
-        tcIdCity.setCellValueFactory(new PropertyValueFactory<Student, Integer>("IdCity"));
-
+        // хз что это но без него не работает
+        tcIdStudent.setCellValueFactory(new PropertyValueFactory<StudentEntity, Integer>("idstudent"));
+        tcFIO.setCellValueFactory(new PropertyValueFactory<StudentEntity, String>("fio"));
+        tcAddress.setCellValueFactory(new PropertyValueFactory<StudentEntity, String>("Address"));
+        tcIdCity.setCellValueFactory(new PropertyValueFactory<StudentEntity, Integer>("idcity"));
     }
 
+
+
+    public  void Insertbtnclick(ActionEvent actionEvent){
+
+        StudentEntity student = new StudentEntity();
+
+        student.setFio(tfFIO.getText());
+        student.setAddress(tfAddress.getText());
+        student.setIdcity(cbCity.getSelectionModel().getSelectedItem().getIdcity());
+
+        studServ.addStudent(student);
+
+  //      lbText.setText("name City = " + cbCity.getSelectionModel().getSelectedItem().getCityname()
+     //           +"\nid City = " + cbCity.getSelectionModel().getSelectedItem().getIdcity());
+
+        System.out.println(student);
+
+        select();
+    }
+
+    public  void  Deletebtnclick(ActionEvent actionEvent){
+
+       // lbText.setText("ID = "+tvMainTableStudent.getSelectionModel().getSelectedItem().getID_Student());
+
+        studServ.deleteStudent(tvMainTableStudent.getSelectionModel().getSelectedItem().getIdstudent());
+
+        select();
+        tvMainTableStudent.refresh();
+    }
 }

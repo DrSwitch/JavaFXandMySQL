@@ -13,6 +13,15 @@ public class CityEntity {
     private String cityname;
     private int idregion;
 
+    public CityEntity(int idcity, String cityname) {
+        this.idcity = idcity;
+        this.cityname = cityname;
+    }
+
+    public CityEntity() {
+
+    }
+
     @Id
     @Column(name = "idcity")
     public int getIdcity() {
@@ -64,4 +73,10 @@ public class CityEntity {
         result = 31 * result + idregion;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return cityname;
+    }
+
 }

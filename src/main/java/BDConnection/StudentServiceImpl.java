@@ -31,7 +31,9 @@ public class StudentServiceImpl implements StudentService{
     }
 
     public void deleteStudent(long idStudent) {
-
+        entityManager.getTransaction().begin();
+        entityManager.remove(getByIdStudent(idStudent));
+        entityManager.getTransaction().commit();
     }
 
     public List<StudentEntity> getAllStudent(){
