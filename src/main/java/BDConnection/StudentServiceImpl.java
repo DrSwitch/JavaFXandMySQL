@@ -27,7 +27,9 @@ public class StudentServiceImpl implements StudentService{
     }
 
     public void updateStudent(StudentEntity student) {
-
+        entityManager.getTransaction().begin();
+        entityManager.merge(student);
+        entityManager.getTransaction().commit();
     }
 
     public void deleteStudent(int idStudent) {

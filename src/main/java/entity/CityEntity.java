@@ -1,6 +1,7 @@
 package entity;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Created by DrSwitch on 20.04.2017.
@@ -12,6 +13,7 @@ public class CityEntity {
     private int idcity;
     private String cityname;
     private int idregion;
+    private Collection<StudentEntity> students;
 
     public CityEntity(int idcity, String cityname) {
         this.idcity = idcity;
@@ -77,6 +79,15 @@ public class CityEntity {
     @Override
     public String toString() {
         return cityname;
+    }
+
+    @OneToMany(mappedBy = "idcity")
+    public Collection<StudentEntity> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Collection<StudentEntity> students) {
+        this.students = students;
     }
 
 }

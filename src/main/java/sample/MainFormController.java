@@ -30,8 +30,6 @@ public class MainFormController  implements Initializable {
     @FXML
     private TextField tfAddress;
     @FXML
-    private TextField tfIdCity;
-    @FXML
     private TableView<StudentEntity> tvMainTableStudent;
     @FXML
     private TableColumn<StudentEntity, Integer> tcIdStudent;
@@ -40,7 +38,7 @@ public class MainFormController  implements Initializable {
     @FXML
     private TableColumn<StudentEntity, String> tcAddress;
     @FXML
-    private TableColumn<StudentEntity, Integer> tcIdCity;
+    private TableColumn<StudentEntity, Integer> tcCity;
     @FXML
     private ComboBox<CityEntity> cbCity;
 
@@ -53,15 +51,10 @@ public class MainFormController  implements Initializable {
 
     private CityServiceImpl cityServ = new CityServiceImpl();
 
-    public MainFormController(){
-       // select();
-    }
-
     //эта хрень запускается и делает код во время загруски формы или типа того
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         select();
-
     }
 
     public void btnclick(ActionEvent actionEvent){
@@ -78,7 +71,8 @@ public class MainFormController  implements Initializable {
 
         //заполняем обсерваблелист для студента
         for (StudentEntity student : lsStudent){
-            userObservableList.add(new StudentEntity(student.getIdstudent(), student.getFio(), student.getAddress(), student.getIdcity()));
+            userObservableList.add(new StudentEntity(student.getIdstudent(), student.getFio(), student.getAddress(), student.getCity()));
+
         }
         //заполняем обсерваблелисты для города
         for (CityEntity city : lsCity) {
@@ -96,9 +90,8 @@ public class MainFormController  implements Initializable {
         tcIdStudent.setCellValueFactory(new PropertyValueFactory<StudentEntity, Integer>("idstudent"));
         tcFIO.setCellValueFactory(new PropertyValueFactory<StudentEntity, String>("fio"));
         tcAddress.setCellValueFactory(new PropertyValueFactory<StudentEntity, String>("Address"));
-        tcIdCity.setCellValueFactory(new PropertyValueFactory<StudentEntity, Integer>("idcity"));
+        tcCity.setCellValueFactory(new PropertyValueFactory<StudentEntity, Integer>("cityname"));
     }
-
 
 
     public  void Insertbtnclick(ActionEvent actionEvent){

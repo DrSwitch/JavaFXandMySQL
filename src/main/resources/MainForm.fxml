@@ -11,28 +11,29 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="400.0" prefHeight="394.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainFormController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="400.0" prefHeight="394.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainFormController">
    <children>
       <SplitPane dividerPositions="0.3448275862068966" prefHeight="355.0" prefWidth="640.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="345.0" prefWidth="274.0">
                <children>
                   <Label fx:id="lbText" text="Label" />
-                  <TextField fx:id="tfFIO" layoutX="12.0" layoutY="29.0" prefHeight="25.0" prefWidth="194.0" promptText="FIO" />
-                  <TextField fx:id="tfAddress" layoutX="12.0" layoutY="66.0" prefHeight="25.0" prefWidth="194.0" promptText="Address" />
+                  <TextField fx:id="tfFIO" layoutX="12.0" layoutY="29.0" prefHeight="25.0" prefWidth="194.0" promptText="ФИО" />
+                  <TextField fx:id="tfAddress" layoutX="12.0" layoutY="66.0" prefHeight="25.0" prefWidth="194.0" promptText="Адрес" />
                   <ComboBox fx:id="cbCountry" layoutX="12.0" layoutY="100.0" prefHeight="25.0" prefWidth="194.0" promptText="Выберете страну" />
                   <ComboBox fx:id="cbRegion" layoutX="12.0" layoutY="137.0" prefHeight="25.0" prefWidth="194.0" promptText="Выберете регион" />
                   <ComboBox fx:id="cbCity" layoutX="12.0" layoutY="173.0" prefHeight="25.0" prefWidth="194.0" promptText="Выберете город" />
                   <Button fx:id="Insertbtn" layoutX="134.0" layoutY="212.0" mnemonicParsing="false" onAction="#Insertbtnclick" text="Добавить" />
+                  <Button layoutX="14.0" layoutY="212.0" mnemonicParsing="false" text="Отмена" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="345.0" prefWidth="409.0">
                <children>
                   <TableView fx:id="tvMainTableStudent" layoutY="-4.0" prefHeight="345.0" prefWidth="409.0">
                     <columns>
-                      <TableColumn fx:id="tcIdStudent" minWidth="40.0" maxWidth="40.0" prefWidth="40.0" text="№" />
+                      <TableColumn fx:id="tcIdStudent" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" text="№" />
                       <TableColumn fx:id="tcFIO" minWidth="74.0" prefWidth="74.0" text="ФИО" />
-                      <TableColumn fx:id="tcIdCity" prefWidth="78.0" text="Город" />
+                      <TableColumn fx:id="tcCity" prefWidth="78.0" text="Город" />
                       <TableColumn fx:id="tcAddress" prefWidth="102.0" text="Адрес" />
                     </columns>
                   </TableView>
@@ -45,6 +46,7 @@
             <Button fx:id="btnConnect" mnemonicParsing="false" onAction="#btnclick" text="Обновить" />
             <Button mnemonicParsing="false" text="Изменить" />
             <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#Deletebtnclick" text="Удалить" />
+            <Button mnemonicParsing="false" text="Справочники" />
         </items>
       </ToolBar>
    </children>
