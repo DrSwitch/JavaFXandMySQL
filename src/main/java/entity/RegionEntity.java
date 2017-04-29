@@ -1,10 +1,9 @@
 package entity;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 /**
- * Created by DrSwitch on 20.04.2017.
+ * Created by DrSwitch on 29.04.2017.
  */
 @Entity
 @Table(name = "region", schema = "infostudent2", catalog = "")
@@ -64,5 +63,4 @@ public class RegionEntity {
         result = 31 * result + idcountry;
         return result;
     }
-
 }

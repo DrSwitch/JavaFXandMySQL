@@ -3,26 +3,17 @@ package entity;
 import javax.persistence.*;
 
 /**
- * Created by DrSwitch on 20.04.2017.
+ * Created by DrSwitch on 29.04.2017.
  */
 @Entity
-@Table(name = "student", schema = "infostudent2", catalog = "")
-@NamedQuery(name = "StudentEntity.getAll", query = "SELECT c FROM StudentEntity  c")
+@Table(name = "student", schema = "infostudent2")
+@NamedQuery(name = "StudentEntity.getAll", query = "SELECT c from StudentEntity c")
 public class StudentEntity {
-    private int idstudent;
+    private int id;
     private String fio;
     private String address;
-    private int idcity;
-
-    @Id
-    @Column(name = "idstudent")
-    public int getIdstudent() {
-        return idstudent;
-    }
-
-    public void setIdstudent(int idstudent) {
-        this.idstudent = idstudent;
-    }
+    private int cityId;
+    private CityEntity city;
 
     @Basic
     @Column(name = "fio")
@@ -44,14 +35,18 @@ public class StudentEntity {
         this.address = address;
     }
 
-    @Basic
-    @Column(name = "idcity")
-    public int getIdcity() {
-        return idcity;
+    @Id
+    @Column(name = "id")
+    public int getId() {
+        return id;
     }
 
-    public void setIdcity(int idcity) {
-        this.idcity = idcity;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
     }
 
     @Override
@@ -61,8 +56,8 @@ public class StudentEntity {
 
         StudentEntity that = (StudentEntity) o;
 
-        if (idstudent != that.idstudent) return false;
-        if (idcity != that.idcity) return false;
+        if (id != that.id) return false;
+        if (city != that.city) return false;
         if (fio != null ? !fio.equals(that.fio) : that.fio != null) return false;
         if (address != null ? !address.equals(that.address) : that.address != null) return false;
 
@@ -71,21 +66,33 @@ public class StudentEntity {
 
     @Override
     public int hashCode() {
-        int result = idstudent;
-        result = 31 * result + (fio != null ? fio.hashCode() : 0);
+        int result = fio != null ? fio.hashCode() : 0;
         result = 31 * result + (address != null ? address.hashCode() : 0);
-        result = 31 * result + idcity;
+        result = 31 * result + id;
+        result = 31 * result + cityId;
         return result;
     }
 
     public StudentEntity() {
     }
 
-    public StudentEntity(int idstudent, String fio, String address, int idcity) {
-        this.idstudent = idstudent;
+    public StudentEntity(int id, String fio, String address, CityEntity city) {
+        this.id = id;
         this.fio = fio;
         this.address = address;
-        this.idcity = idcity;
+        this.city = city;
     }
+
+
+    @ManyToOne
+    @JoinColumn(name = "city")
+    public CityEntity getCity() {
+        return city;
+    }
+
+    public void setCity(CityEntity city) {
+        this.city = city;
+    }
+
 
 }

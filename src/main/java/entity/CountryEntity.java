@@ -1,10 +1,9 @@
 package entity;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 /**
- * Created by DrSwitch on 20.04.2017.
+ * Created by DrSwitch on 29.04.2017.
  */
 @Entity
 @Table(name = "country", schema = "infostudent2", catalog = "")
@@ -51,5 +50,4 @@ public class CountryEntity {
         result = 31 * result + (countryname != null ? countryname.hashCode() : 0);
         return result;
     }
-
 }

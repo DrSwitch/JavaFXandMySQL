@@ -1,4 +1,4 @@
-package BDConnection;
+package bdconnection;
 
 import entity.StudentEntity;
 

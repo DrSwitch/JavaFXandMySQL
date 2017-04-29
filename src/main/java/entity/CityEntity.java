@@ -4,54 +4,45 @@ import javax.persistence.*;
 import java.util.Collection;
 
 /**
- * Created by DrSwitch on 20.04.2017.
+ * Created by DrSwitch on 29.04.2017.
  */
 @Entity
-@Table(name = "city", schema = "infostudent2", catalog = "")
-@NamedQuery(name = "CityEntity.getAll", query = "SELECT c FROM CityEntity c")
+@Table(name = "city", schema = "infostudent2")
+@NamedQuery(name = "CityEntity.getAll", query = "SELECT c from CityEntity c")
 public class CityEntity {
-    private int idcity;
-    private String cityname;
-    private int idregion;
-
-
-    public CityEntity(int idcity, String cityname) {
-        this.idcity = idcity;
-        this.cityname = cityname;
-    }
-
-    public CityEntity() {
-
-    }
+    private int id;
+    private String city;
+    private int region;
+    private Collection<StudentEntity> students;
 
     @Id
-    @Column(name = "idcity")
-    public int getIdcity() {
-        return idcity;
+    @Column(name = "id")
+    public int getId() {
+        return id;
     }
 
-    public void setIdcity(int idcity) {
-        this.idcity = idcity;
-    }
-
-    @Basic
-    @Column(name = "cityname")
-    public String getCityname() {
-        return cityname;
-    }
-
-    public void setCityname(String cityname) {
-        this.cityname = cityname;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
-    @Column(name = "idregion")
-    public int getIdregion() {
-        return idregion;
+    @Column(name = "city")
+    public String getCity() {
+        return city;
     }
 
-    public void setIdregion(int idregion) {
-        this.idregion = idregion;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    @Basic
+    @Column(name = "region")
+    public int getRegion() {
+        return region;
+    }
+
+    public void setRegion(int region) {
+        this.region = region;
     }
 
     @Override
@@ -61,24 +52,40 @@ public class CityEntity {
 
         CityEntity that = (CityEntity) o;
 
-        if (idcity != that.idcity) return false;
-        if (idregion != that.idregion) return false;
-        if (cityname != null ? !cityname.equals(that.cityname) : that.cityname != null) return false;
+        if (id != that.id) return false;
+        if (region != that.region) return false;
+        if (city != null ? !city.equals(that.city) : that.city != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = idcity;
-        result = 31 * result + (cityname != null ? cityname.hashCode() : 0);
-        result = 31 * result + idregion;
+        int result = id;
+        result = 31 * result + (city != null ? city.hashCode() : 0);
+        result = 31 * result + region;
         return result;
+    }
+
+    public CityEntity() {
+    }
+
+    public CityEntity(int id, String city) {
+        this.id = id;
+        this.city = city;
     }
 
     @Override
     public String toString() {
-        return cityname;
+        return city;
     }
 
+    @OneToMany(mappedBy = "city")
+    public Collection<StudentEntity> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Collection<StudentEntity> students) {
+        this.students = students;
+    }
 }
