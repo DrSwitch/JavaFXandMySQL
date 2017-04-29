@@ -13,7 +13,6 @@ public class StudentEntity {
     private String fio;
     private String address;
     private int idcity;
-    private CityEntity cityname;
 
     @Id
     @Column(name = "idstudent")
@@ -82,20 +81,21 @@ public class StudentEntity {
     public StudentEntity() {
     }
 
-    public StudentEntity(int idstudent, String fio, String address, CityEntity cityname) {
+    public StudentEntity(int idstudent, String fio, String address, CityEntity city) {
         this.idstudent = idstudent;
         this.fio = fio;
         this.address = address;
-        this.cityname = cityname;
+        City = city;
     }
+
+    private CityEntity City;
 
     @ManyToOne
-    @JoinColumn(name = "idcity")
     public CityEntity getCity() {
-        return cityname;
+        return City;
     }
 
-    public void setCity(CityEntity cityname) {
-        this.cityname = cityname;
+    public void setCity(CityEntity city) {
+        City = city;
     }
 }

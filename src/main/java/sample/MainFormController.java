@@ -38,7 +38,7 @@ public class MainFormController  implements Initializable {
     @FXML
     private TableColumn<StudentEntity, String> tcAddress;
     @FXML
-    private TableColumn<StudentEntity, Integer> tcCity;
+    private TableColumn<StudentEntity, String> tcCity;
     @FXML
     private ComboBox<CityEntity> cbCity;
 
@@ -90,7 +90,7 @@ public class MainFormController  implements Initializable {
         tcIdStudent.setCellValueFactory(new PropertyValueFactory<StudentEntity, Integer>("idstudent"));
         tcFIO.setCellValueFactory(new PropertyValueFactory<StudentEntity, String>("fio"));
         tcAddress.setCellValueFactory(new PropertyValueFactory<StudentEntity, String>("Address"));
-        tcCity.setCellValueFactory(new PropertyValueFactory<StudentEntity, Integer>("cityname"));
+        tcCity.setCellValueFactory(new PropertyValueFactory<StudentEntity, String>("city"));
     }
 
 

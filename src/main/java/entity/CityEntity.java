@@ -13,7 +13,8 @@ public class CityEntity {
     private int idcity;
     private String cityname;
     private int idregion;
-    private Collection<StudentEntity> students;
+    private Collection<StudentEntity> Students;
+
 
     public CityEntity(int idcity, String cityname) {
         this.idcity = idcity;
@@ -81,13 +82,23 @@ public class CityEntity {
         return cityname;
     }
 
-    @OneToMany(mappedBy = "idcity")
+    @OneToMany
     public Collection<StudentEntity> getStudents() {
-        return students;
+        return Students;
     }
 
     public void setStudents(Collection<StudentEntity> students) {
-        this.students = students;
+        Students = students;
     }
 
+    private RegionEntity Regions;
+
+    @ManyToOne
+    public RegionEntity getRegions() {
+        return Regions;
+    }
+
+    public void setRegions(RegionEntity regions) {
+        Regions = regions;
+    }
 }

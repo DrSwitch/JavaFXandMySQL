@@ -1,6 +1,7 @@
 package entity;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Created by DrSwitch on 20.04.2017.
@@ -49,5 +50,16 @@ public class CountryEntity {
         int result = idcountry;
         result = 31 * result + (countryname != null ? countryname.hashCode() : 0);
         return result;
+    }
+
+    private Collection<RegionEntity> Regions;
+
+    @OneToMany
+    public Collection<RegionEntity> getRegions() {
+        return Regions;
+    }
+
+    public void setRegions(Collection<RegionEntity> regions) {
+        Regions = regions;
     }
 }
