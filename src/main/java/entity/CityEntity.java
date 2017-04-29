@@ -13,7 +13,6 @@ public class CityEntity {
     private int idcity;
     private String cityname;
     private int idregion;
-    private Collection<StudentEntity> Students;
 
 
     public CityEntity(int idcity, String cityname) {
@@ -82,23 +81,4 @@ public class CityEntity {
         return cityname;
     }
 
-    @OneToMany
-    public Collection<StudentEntity> getStudents() {
-        return Students;
-    }
-
-    public void setStudents(Collection<StudentEntity> students) {
-        Students = students;
-    }
-
-    private RegionEntity Regions;
-
-    @ManyToOne
-    public RegionEntity getRegions() {
-        return Regions;
-    }
-
-    public void setRegions(RegionEntity regions) {
-        Regions = regions;
-    }
 }

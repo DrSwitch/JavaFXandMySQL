@@ -38,7 +38,7 @@ public class MainFormController  implements Initializable {
     @FXML
     private TableColumn<StudentEntity, String> tcAddress;
     @FXML
-    private TableColumn<StudentEntity, String> tcCity;
+    private TableColumn<StudentEntity, Integer> tcCity;
     @FXML
     private ComboBox<CityEntity> cbCity;
 
@@ -71,7 +71,7 @@ public class MainFormController  implements Initializable {
 
         //заполняем обсерваблелист для студента
         for (StudentEntity student : lsStudent){
-            userObservableList.add(new StudentEntity(student.getIdstudent(), student.getFio(), student.getAddress(), student.getCity()));
+            userObservableList.add(new StudentEntity(student.getIdstudent(), student.getFio(), student.getAddress(), student.getIdcity()));
 
         }
         //заполняем обсерваблелисты для города
@@ -90,9 +90,8 @@ public class MainFormController  implements Initializable {
         tcIdStudent.setCellValueFactory(new PropertyValueFactory<StudentEntity, Integer>("idstudent"));
         tcFIO.setCellValueFactory(new PropertyValueFactory<StudentEntity, String>("fio"));
         tcAddress.setCellValueFactory(new PropertyValueFactory<StudentEntity, String>("Address"));
-        tcCity.setCellValueFactory(new PropertyValueFactory<StudentEntity, String>("city"));
+        tcCity.setCellValueFactory(new PropertyValueFactory<StudentEntity, Integer>("idcity"));
     }
-
 
     public  void Insertbtnclick(ActionEvent actionEvent){
 

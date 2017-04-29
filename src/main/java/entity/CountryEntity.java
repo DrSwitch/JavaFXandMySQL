@@ -52,14 +52,4 @@ public class CountryEntity {
         return result;
     }
 
-    private Collection<RegionEntity> Regions;
-
-    @OneToMany
-    public Collection<RegionEntity> getRegions() {
-        return Regions;
-    }
-
-    public void setRegions(Collection<RegionEntity> regions) {
-        Regions = regions;
-    }
 }

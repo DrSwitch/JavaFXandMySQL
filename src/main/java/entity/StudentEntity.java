@@ -81,21 +81,11 @@ public class StudentEntity {
     public StudentEntity() {
     }
 
-    public StudentEntity(int idstudent, String fio, String address, CityEntity city) {
+    public StudentEntity(int idstudent, String fio, String address, int idcity) {
         this.idstudent = idstudent;
         this.fio = fio;
         this.address = address;
-        City = city;
+        this.idcity = idcity;
     }
 
-    private CityEntity City;
-
-    @ManyToOne
-    public CityEntity getCity() {
-        return City;
-    }
-
-    public void setCity(CityEntity city) {
-        City = city;
-    }
 }
