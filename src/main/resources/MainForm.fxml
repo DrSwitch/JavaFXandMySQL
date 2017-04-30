@@ -33,8 +33,8 @@
                     <columns>
                       <TableColumn fx:id="tcIdStudent" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" text="№" />
                       <TableColumn fx:id="tcFIO" minWidth="74.0" prefWidth="74.0" text="ФИО" />
-                      <TableColumn fx:id="tcCity" prefWidth="78.0" text="Город" />
                       <TableColumn fx:id="tcAddress" prefWidth="102.0" text="Адрес" />
+                      <TableColumn fx:id="tcCity" prefWidth="78.0" text="Город" />
                     </columns>
                   </TableView>
                </children>
@@ -46,7 +46,9 @@
             <Button fx:id="btnConnect" mnemonicParsing="false" onAction="#btnclick" text="Обновить" />
             <Button mnemonicParsing="false" text="Изменить" />
             <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#Deletebtnclick" text="Удалить" />
-            <Button mnemonicParsing="false" text="Справочники" />
+            <Button fx:id="btnCountry" mnemonicParsing="false" onAction="#CountrybtnClick" text="Страны" />
+            <Button fx:id="btnRegion" mnemonicParsing="false" onAction="#RegionbtnClick" text="Регионы" />
+            <Button fx:id="btnCity" mnemonicParsing="false" onAction="#CitybtnClick" text="Города" />
         </items>
       </ToolBar>
    </children>

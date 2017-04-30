@@ -3,23 +3,23 @@ package entity;
 import javax.persistence.*;
 
 /**
- * Created by DrSwitch on 29.04.2017.
+ * Created by DrSwitch on 30.04.2017.
  */
 @Entity
 @Table(name = "region", schema = "infostudent2", catalog = "")
 public class RegionEntity {
-    private int idregion;
+    private int regionid;
     private String regionname;
-    private int idcountry;
+    private int countryid;
 
     @Id
-    @Column(name = "idregion")
-    public int getIdregion() {
-        return idregion;
+    @Column(name = "regionid")
+    public int getRegionid() {
+        return regionid;
     }
 
-    public void setIdregion(int idregion) {
-        this.idregion = idregion;
+    public void setRegionid(int regionid) {
+        this.regionid = regionid;
     }
 
     @Basic
@@ -33,13 +33,13 @@ public class RegionEntity {
     }
 
     @Basic
-    @Column(name = "idcountry")
-    public int getIdcountry() {
-        return idcountry;
+    @Column(name = "countryid")
+    public int getCountryid() {
+        return countryid;
     }
 
-    public void setIdcountry(int idcountry) {
-        this.idcountry = idcountry;
+    public void setCountryid(int countryid) {
+        this.countryid = countryid;
     }
 
     @Override
@@ -49,8 +49,8 @@ public class RegionEntity {
 
         RegionEntity that = (RegionEntity) o;
 
-        if (idregion != that.idregion) return false;
-        if (idcountry != that.idcountry) return false;
+        if (regionid != that.regionid) return false;
+        if (countryid != that.countryid) return false;
         if (regionname != null ? !regionname.equals(that.regionname) : that.regionname != null) return false;
 
         return true;
@@ -58,9 +58,9 @@ public class RegionEntity {
 
     @Override
     public int hashCode() {
-        int result = idregion;
+        int result = regionid;
         result = 31 * result + (regionname != null ? regionname.hashCode() : 0);
-        result = 31 * result + idcountry;
+        result = 31 * result + countryid;
         return result;
     }
 }

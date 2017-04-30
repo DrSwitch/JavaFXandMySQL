@@ -3,16 +3,16 @@ package entity;
 import javax.persistence.*;
 
 /**
- * Created by DrSwitch on 29.04.2017.
+ * Created by DrSwitch on 30.04.2017.
  */
 @Entity
 @Table(name = "student", schema = "infostudent2")
 @NamedQuery(name = "StudentEntity.getAll", query = "SELECT c from StudentEntity c")
 public class StudentEntity {
-    private int id;
     private String fio;
     private String address;
-    private int cityId;
+    private int studentid;
+    private int cityid;
     private CityEntity city;
 
     @Basic
@@ -36,17 +36,13 @@ public class StudentEntity {
     }
 
     @Id
-    @Column(name = "id")
-    public int getId() {
-        return id;
+    @Column(name = "studentid")
+    public int getStudentid() {
+        return studentid;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setCityId(int cityId) {
-        this.cityId = cityId;
+    public void setStudentid(int studentid) {
+        this.studentid = studentid;
     }
 
     @Override
@@ -56,8 +52,8 @@ public class StudentEntity {
 
         StudentEntity that = (StudentEntity) o;
 
-        if (id != that.id) return false;
-        if (city != that.city) return false;
+        if (studentid != that.studentid) return false;
+        if (cityid != that.cityid) return false;
         if (fio != null ? !fio.equals(that.fio) : that.fio != null) return false;
         if (address != null ? !address.equals(that.address) : that.address != null) return false;
 
@@ -68,24 +64,23 @@ public class StudentEntity {
     public int hashCode() {
         int result = fio != null ? fio.hashCode() : 0;
         result = 31 * result + (address != null ? address.hashCode() : 0);
-        result = 31 * result + id;
-        result = 31 * result + cityId;
+        result = 31 * result + studentid;
+        result = 31 * result + cityid;
         return result;
     }
 
     public StudentEntity() {
     }
 
-    public StudentEntity(int id, String fio, String address, CityEntity city) {
-        this.id = id;
+    public StudentEntity(int studentid, String fio, String address, CityEntity city) {
         this.fio = fio;
         this.address = address;
+        this.studentid = studentid;
         this.city = city;
     }
 
-
     @ManyToOne
-    @JoinColumn(name = "city")
+    @JoinColumn(name = "cityid")
     public CityEntity getCity() {
         return city;
     }
@@ -93,6 +88,4 @@ public class StudentEntity {
     public void setCity(CityEntity city) {
         this.city = city;
     }
-
-
 }

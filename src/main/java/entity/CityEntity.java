@@ -4,45 +4,45 @@ import javax.persistence.*;
 import java.util.Collection;
 
 /**
- * Created by DrSwitch on 29.04.2017.
+ * Created by DrSwitch on 30.04.2017.
  */
 @Entity
-@Table(name = "city", schema = "infostudent2")
+@Table(name = "city", schema = "infostudent2", catalog = "")
 @NamedQuery(name = "CityEntity.getAll", query = "SELECT c from CityEntity c")
 public class CityEntity {
-    private int id;
-    private String city;
-    private int region;
+    private int cityid;
+    private String cityname;
+    private int regionid;
     private Collection<StudentEntity> students;
 
     @Id
-    @Column(name = "id")
-    public int getId() {
-        return id;
+    @Column(name = "cityid")
+    public int getCityid() {
+        return cityid;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @Basic
-    @Column(name = "city")
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
+    public void setCityid(int cityid) {
+        this.cityid = cityid;
     }
 
     @Basic
-    @Column(name = "region")
-    public int getRegion() {
-        return region;
+    @Column(name = "cityname")
+    public String getCityname() {
+        return cityname;
     }
 
-    public void setRegion(int region) {
-        this.region = region;
+    public void setCityname(String cityname) {
+        this.cityname = cityname;
+    }
+
+    @Basic
+    @Column(name = "regionid")
+    public int getRegionid() {
+        return regionid;
+    }
+
+    public void setRegionid(int regionid) {
+        this.regionid = regionid;
     }
 
     @Override
@@ -52,32 +52,32 @@ public class CityEntity {
 
         CityEntity that = (CityEntity) o;
 
-        if (id != that.id) return false;
-        if (region != that.region) return false;
-        if (city != null ? !city.equals(that.city) : that.city != null) return false;
+        if (cityid != that.cityid) return false;
+        if (regionid != that.regionid) return false;
+        if (cityname != null ? !cityname.equals(that.cityname) : that.cityname != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (city != null ? city.hashCode() : 0);
-        result = 31 * result + region;
+        int result = cityid;
+        result = 31 * result + (cityname != null ? cityname.hashCode() : 0);
+        result = 31 * result + regionid;
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return cityname;
     }
 
     public CityEntity() {
     }
 
-    public CityEntity(int id, String city) {
-        this.id = id;
-        this.city = city;
-    }
-
-    @Override
-    public String toString() {
-        return city;
+    public CityEntity(int cityid, String cityname) {
+        this.cityid = cityid;
+        this.cityname = cityname;
     }
 
     @OneToMany(mappedBy = "city")
@@ -88,4 +88,5 @@ public class CityEntity {
     public void setStudents(Collection<StudentEntity> students) {
         this.students = students;
     }
+
 }

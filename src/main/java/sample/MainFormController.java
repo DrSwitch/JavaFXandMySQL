@@ -71,7 +71,7 @@ public class MainFormController  implements Initializable {
         //заполняем обсерваблелист для студента
         for (StudentEntity student : lsStudent){
             userObservableList.add(new StudentEntity(
-                    student.getId(),
+                    student.getStudentid(),
                     student.getFio(),
                     student.getAddress(),
                     student.getCity()));
@@ -79,7 +79,7 @@ public class MainFormController  implements Initializable {
         }
         //заполняем обсерваблелисты для города
         for (CityEntity city : lsCity) {
-            cityNamesObservableList.add(new CityEntity(city.getId(),city.getCity()));
+            cityNamesObservableList.add(new CityEntity(city.getCityid(),city.getCityname()));
         }
 
         //заполняем кобобох из обсерваблелиста
@@ -90,7 +90,7 @@ public class MainFormController  implements Initializable {
         tvMainTableStudent.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         // хз что это но без него не работает
-        tcIdStudent.setCellValueFactory(new PropertyValueFactory<StudentEntity, Integer>("id"));
+        tcIdStudent.setCellValueFactory(new PropertyValueFactory<StudentEntity, Integer>("studentid"));
         tcFIO.setCellValueFactory(new PropertyValueFactory<StudentEntity, String>("fio"));
         tcAddress.setCellValueFactory(new PropertyValueFactory<StudentEntity, String>("Address"));
         tcCity.setCellValueFactory(new PropertyValueFactory<StudentEntity, String>("city"));
@@ -102,7 +102,7 @@ public class MainFormController  implements Initializable {
 
         student.setFio(tfFIO.getText());
         student.setAddress(tfAddress.getText());
-        student.setCityId(cbCity.getSelectionModel().getSelectedItem().getId());
+        student.setCity(cbCity.getSelectionModel().getSelectedItem());
 
         studServ.addStudent(student);
 
@@ -118,9 +118,19 @@ public class MainFormController  implements Initializable {
 
        // lbText.setText("ID = "+tvMainTableStudent.getSelectionModel().getSelectedItem().getID_Student());
 
-        studServ.deleteStudent(tvMainTableStudent.getSelectionModel().getSelectedItem().getId());
+        studServ.deleteStudent(tvMainTableStudent.getSelectionModel().getSelectedItem().getStudentid());
 
         select();
         tvMainTableStudent.refresh();
+    }
+    public  void CountrybtnClick(){
+
+    }
+    public  void RegionbtnClick(){
+
+    }
+    public  void CitybtnClick(){
+
+
     }
 }
