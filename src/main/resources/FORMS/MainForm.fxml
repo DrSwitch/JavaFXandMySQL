@@ -13,11 +13,21 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="400.0" prefHeight="394.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainFormController">
    <children>
+      <ToolBar prefHeight="40.0" prefWidth="384.0">
+        <items>
+            <Button fx:id="btnConnect" mnemonicParsing="false" onAction="#btnclick" text="Обновить" />
+            <Button mnemonicParsing="false" text="Изменить" />
+            <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#Deletebtnclick" text="Удалить" />
+            <Button fx:id="btnCountry" mnemonicParsing="false" onAction="#CountrybtnClick" text="Страны" />
+            <Button fx:id="btnRegion" mnemonicParsing="false" onAction="#RegionbtnClick" text="Регионы" />
+            <Button fx:id="btnCity" mnemonicParsing="false" onAction="#CitybtnClick" text="Города" />
+        </items>
+      </ToolBar>
       <SplitPane dividerPositions="0.3448275862068966" prefHeight="355.0" prefWidth="640.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="345.0" prefWidth="274.0">
                <children>
-                  <Label fx:id="lbText" text="Label" />
+                  <Label fx:id="lbText" />
                   <TextField fx:id="tfFIO" layoutX="12.0" layoutY="29.0" prefHeight="25.0" prefWidth="194.0" promptText="ФИО" />
                   <TextField fx:id="tfAddress" layoutX="12.0" layoutY="66.0" prefHeight="25.0" prefWidth="194.0" promptText="Адрес" />
                   <ComboBox fx:id="cbCountry" layoutX="12.0" layoutY="100.0" prefHeight="25.0" prefWidth="194.0" promptText="Выберете страну" />
@@ -41,15 +51,5 @@
             </AnchorPane>
         </items>
       </SplitPane>
-      <ToolBar prefHeight="40.0" prefWidth="384.0">
-        <items>
-            <Button fx:id="btnConnect" mnemonicParsing="false" onAction="#btnclick" text="Обновить" />
-            <Button mnemonicParsing="false" text="Изменить" />
-            <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#Deletebtnclick" text="Удалить" />
-            <Button fx:id="btnCountry" mnemonicParsing="false" onAction="#CountrybtnClick" text="Страны" />
-            <Button fx:id="btnRegion" mnemonicParsing="false" onAction="#RegionbtnClick" text="Регионы" />
-            <Button fx:id="btnCity" mnemonicParsing="false" onAction="#CitybtnClick" text="Города" />
-        </items>
-      </ToolBar>
    </children>
 </VBox>
