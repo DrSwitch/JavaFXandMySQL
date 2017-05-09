@@ -46,7 +46,6 @@ public abstract class AbstractDAOImpl<T> implements DAO<T>{
 
     @Override
     public void delete(int id) {
-
         this.entityManager.getTransaction().begin();
         this.entityManager.clear();
         this.entityManager.remove(getById(id));
@@ -58,4 +57,6 @@ public abstract class AbstractDAOImpl<T> implements DAO<T>{
         TypedQuery<T> typedQuery = this.entityManager.createNamedQuery(persistentClass + ".getAll", entity);
         return typedQuery.getResultList();
     }
+
+
 }

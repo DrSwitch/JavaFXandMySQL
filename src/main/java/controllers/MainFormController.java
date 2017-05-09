@@ -1,8 +1,12 @@
 package controllers;
+import dbconnection.impl.CountryServiceImpl;
+import dbconnection.impl.RegionServiceImpl;
 import dbconnection.impl.StudentServiceImpl;
 import dbconnection.impl.CityServiceImpl;
 
 import entity.CityEntity;
+import entity.CountryEntity;
+import entity.RegionEntity;
 import entity.StudentEntity;
 
 
@@ -24,6 +28,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.swing.plaf.synth.Region;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -50,14 +55,20 @@ public class MainFormController  implements Initializable {
     private TableColumn<StudentEntity, String> tcCity;
     @FXML
     private ComboBox<CityEntity> cbCity;
+    @FXML
+    private ComboBox<RegionEntity> cbRegion;
+    @FXML
+    private ComboBox<CountryEntity> cbCountry;
 
     private ObservableList<StudentEntity> userObservableList = FXCollections.observableArrayList();
-
     private ObservableList<CityEntity> cityNamesObservableList= FXCollections.observableArrayList();
+    private ObservableList<RegionEntity> regionNamesObservableList= FXCollections.observableArrayList();
+    private ObservableList<CountryEntity> countryNamesObservableList= FXCollections.observableArrayList();
 
     private StudentServiceImpl studServ = new StudentServiceImpl();
-
     private CityServiceImpl cityServ = new CityServiceImpl();
+    private RegionServiceImpl regionServ = new RegionServiceImpl();
+    private CountryServiceImpl countryServ = new CountryServiceImpl();
 
     //эта хрень запускается и делает код во время загруски формы или типа того
     @Override
@@ -71,11 +82,11 @@ public class MainFormController  implements Initializable {
 
     public void select(){
         List<StudentEntity> lsStudent = studServ.getAllStudent();
-        List<CityEntity> lsCity = cityServ.getAllcity();
+        List<CountryEntity> lsCountry = countryServ.getAllCountry();
 
         //инициация листа
         userObservableList = FXCollections.observableArrayList();
-        cityNamesObservableList = FXCollections.observableArrayList();
+        countryNamesObservableList = FXCollections.observableArrayList();
 
         //заполняем обсерваблелист для студента
         for (StudentEntity student : lsStudent){
@@ -84,18 +95,16 @@ public class MainFormController  implements Initializable {
                     student.getFio(),
                     student.getAddress(),
                     student.getCity()));
-
         }
         //заполняем обсерваблелисты для города
-        for (CityEntity city : lsCity) {
-            cityNamesObservableList.add(new CityEntity(city.getCityid(),city.getCityname(),city.getRegion()));
+        for (CountryEntity country : lsCountry) {
+            countryNamesObservableList.add(new CountryEntity(country.getCountryid(),country.getCountryname()));
         }
 
-        //заполняем кобобох из обсерваблелиста
-        cbCity.setItems(cityNamesObservableList);
+        cbCountry.setItems(countryNamesObservableList);
+
         //Заполняем таблевью из обсерваблелиста
         tvMainTableStudent.setItems(userObservableList);
-
         tvMainTableStudent.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         // хз что это но без него не работает
@@ -106,29 +115,18 @@ public class MainFormController  implements Initializable {
     }
 
     public  void Insertbtnclick(ActionEvent actionEvent){
-
         StudentEntity student = new StudentEntity();
 
         student.setFio(tfFIO.getText());
         student.setAddress(tfAddress.getText());
         student.setCity(cbCity.getSelectionModel().getSelectedItem());
-
         studServ.addStudent(student);
-
-  //      lbText.setText("name City = " + cbCity.getSelectionModel().getSelectedItem().getCityname()
-     //           +"\nid City = " + cbCity.getSelectionModel().getSelectedItem().getIdcity());
-
         System.out.println(student);
-
         select();
     }
 
     public  void  Deletebtnclick(ActionEvent actionEvent){
-
-       // lbText.setText("ID = "+tvMainTableStudent.getSelectionModel().getSelectedItem().getID_Student());
-
         studServ.deleteStudent(tvMainTableStudent.getSelectionModel().getSelectedItem().getStudentid());
-
         select();
         tvMainTableStudent.refresh();
     }
@@ -182,4 +180,27 @@ public class MainFormController  implements Initializable {
             ex.printStackTrace();
         }
     }
+
+    public void CountryChange(){
+        List<RegionEntity> lsRegion = regionServ.getRegionsInCountry(cbCountry.getSelectionModel().getSelectedItem());
+
+        regionNamesObservableList = FXCollections.observableArrayList();
+
+        for (RegionEntity region : lsRegion) {
+            regionNamesObservableList.add(new RegionEntity(region.getRegionid(),region.getRegionname(),region.getCountry()));
+        }
+        cbRegion.setItems(regionNamesObservableList);
+    }
+
+    public void RegionChange(){
+        List<CityEntity> lsCity = cityServ.getCitiesInRegion(cbRegion.getSelectionModel().getSelectedItem());
+
+        cityNamesObservableList = FXCollections.observableArrayList();
+        for (CityEntity city : lsCity) {
+            cityNamesObservableList.add(new CityEntity(city.getCityid(),city.getCityname(),city.getRegion()));
+        }
+
+        cbCity.setItems(cityNamesObservableList);
+    }
+
 }
