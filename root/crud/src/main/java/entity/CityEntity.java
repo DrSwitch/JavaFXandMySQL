@@ -18,6 +18,7 @@ public class CityEntity {
     private int cityid;
     private String cityname;
     private int regionid;
+    private RegionEntity region;
     private Collection<StudentEntity> students;
 
     @Id
@@ -38,16 +39,6 @@ public class CityEntity {
 
     public void setCityname(String cityname) {
         this.cityname = cityname;
-    }
-
-    @Basic
-    @Column(name = "regionid")
-    public int getRegionid() {
-        return regionid;
-    }
-
-    public void setRegionid(int regionid) {
-        this.regionid = regionid;
     }
 
     @Override
@@ -80,9 +71,10 @@ public class CityEntity {
     public CityEntity() {
     }
 
-    public CityEntity(int cityid, String cityname) {
+    public CityEntity(int cityid, String cityname, RegionEntity region) {
         this.cityid = cityid;
         this.cityname = cityname;
+        this.region = region;
     }
 
     @OneToMany(mappedBy = "city")
@@ -92,6 +84,16 @@ public class CityEntity {
 
     public void setStudents(Collection<StudentEntity> students) {
         this.students = students;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="regionid")
+    public RegionEntity getRegion() {
+        return region;
+    }
+
+    public void setRegion(RegionEntity region) {
+        this.region = region;
     }
 
 }

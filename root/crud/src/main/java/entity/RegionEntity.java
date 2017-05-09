@@ -1,6 +1,7 @@
 package entity;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Created by DrSwitch on 30.04.2017.
@@ -15,6 +16,8 @@ public class RegionEntity {
     private int regionid;
     private String regionname;
     private int countryid;
+    private CountryEntity country;
+    private Collection<CityEntity> cities;
 
     @Id
     @Column(name = "regionid")
@@ -36,15 +39,7 @@ public class RegionEntity {
         this.regionname = regionname;
     }
 
-    @Basic
-    @Column(name = "countryid")
-    public int getCountryid() {
-        return countryid;
-    }
 
-    public void setCountryid(int countryid) {
-        this.countryid = countryid;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -71,10 +66,10 @@ public class RegionEntity {
     public RegionEntity() {
     }
 
-    public RegionEntity(int regionid, String regionname, int countryid) {
+    public RegionEntity(int regionid, String regionname, CountryEntity country) {
         this.regionid = regionid;
         this.regionname = regionname;
-        this.countryid = countryid;
+        this.country = country;
     }
 
     @Override
@@ -82,5 +77,23 @@ public class RegionEntity {
         return regionname;
     }
 
+    @ManyToOne
+    @JoinColumn(name="countryid")
+    public CountryEntity getCountry() {
+        return country;
+    }
+
+    public void setCountry(CountryEntity country) {
+        this.country = country;
+    }
+
+    @OneToMany(mappedBy = "region")
+    public Collection<CityEntity> getCities() {
+        return cities;
+    }
+
+    public void setCities(Collection<CityEntity> cities) {
+        this.cities = cities;
+    }
 
 }
