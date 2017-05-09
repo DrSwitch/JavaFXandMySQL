@@ -74,10 +74,14 @@ public class CityFormController  implements Initializable {
     }
 
     public void AddCitybtnClick (){
-
+        CityEntity city = new CityEntity();
+        city.setCityname(tfCityName.getText());
+        city.setRegion(cbRegion.getSelectionModel().getSelectedItem());
+        cityServ.addCity(city);
+        select();
     }
     public void DelCitybtnClick (){
-
-
+        cityServ.deleteCity(tvCities.getSelectionModel().getSelectedItem().getCityid());
+        select();
     }
 }

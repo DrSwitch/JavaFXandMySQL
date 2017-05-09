@@ -10,7 +10,8 @@ import java.util.Collection;
 @Table(name = "region", schema = "infostudent2")
 @NamedQueries({
         @NamedQuery(name = "RegionDAOServiceImpl.getAll", query = "SELECT c from RegionEntity c"),
-        @NamedQuery(name = "RegionEntity.getAll", query = "SELECT c from RegionEntity c")
+        @NamedQuery(name = "RegionEntity.getAll", query = "SELECT c from RegionEntity c"),
+        @NamedQuery(name = "RegionDAOServiceImpl.find", query = "SELECT c from RegionEntity c WHERE c.id = :id")
 })
 public class RegionEntity {
     private int regionid;

@@ -10,7 +10,8 @@ import java.util.Collection;
 @Table(name = "city", schema = "infostudent2")
 @NamedQueries({
         @NamedQuery(name = "CityDAOServiceImpl.getAll", query = "SELECT c from CityEntity c"),
-        @NamedQuery(name = "CityEntity.getAll", query = "SELECT c from CityEntity c")
+        @NamedQuery(name = "CityEntity.getAll", query = "SELECT c from CityEntity c"),
+        @NamedQuery(name = "CityDAOServiceImpl.find", query = "SELECT c from CityEntity c WHERE c.id = :id")
 })
 
 //тут нада поискать более изящное решение у названия запроса

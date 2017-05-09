@@ -74,11 +74,19 @@ public class RegionFormController implements Initializable {
         tcCountryName.setCellValueFactory(new PropertyValueFactory<RegionEntity, Integer>("country"));
     }
 
+    public void AddRegionbtnClick(){
+        RegionEntity region = new RegionEntity();
+        region.setRegionname(tfRegionName.getText());
+        region.setCountry(cbCountry.getSelectionModel().getSelectedItem());
+        regionServ.addRegion(region);
+        select();
 
-public void AddRegionbtnClick(){
+    }
+
+    public void DelRegionbtnClick(){
+        regionServ.deleteRegion(tvRegions.getSelectionModel().getSelectedItem().getRegionid());
+        select();
+    }
 
 
-}
-
-public void DelRegionbtnClick(){}
 }
