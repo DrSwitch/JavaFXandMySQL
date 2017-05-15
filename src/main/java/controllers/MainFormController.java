@@ -115,20 +115,46 @@ public class MainFormController  implements Initializable {
     }
 
     public  void Insertbtnclick(ActionEvent actionEvent){
-        StudentEntity student = new StudentEntity();
 
-        student.setFio(tfFIO.getText());
-        student.setAddress(tfAddress.getText());
-        student.setCity(cbCity.getSelectionModel().getSelectedItem());
-        studServ.addStudent(student);
-        System.out.println(student);
+        if(updateorinsert==0){
+            StudentEntity student = new StudentEntity();
+            student.setFio(tfFIO.getText());
+            student.setAddress(tfAddress.getText());
+            student.setCity(cbCity.getSelectionModel().getSelectedItem());
+            studServ.addStudent(student);
+            System.out.println(student);
+        }
+        if(updateorinsert==1) {
+            StudentEntity student = tvMainTableStudent.getSelectionModel().getSelectedItem();
+
+            student.setFio(tfFIO.getText());
+            student.setAddress(tfAddress.getText());
+            student.setCity(cbCity.getSelectionModel().getSelectedItem());
+            studServ.updateStudent(student);
+            System.out.println(student);
+        }
         select();
+        updateorinsert = 0;
     }
 
-    public  void  Deletebtnclick(ActionEvent actionEvent){
+    public  void Deletebtnclick(ActionEvent actionEvent){
         studServ.deleteStudent(tvMainTableStudent.getSelectionModel().getSelectedItem().getStudentid());
         select();
         tvMainTableStudent.refresh();
+    }
+
+    int updateorinsert = 0; // если 0 стоит то инсёрт, если 1 то апдейт
+    public void Updatebtnclick(ActionEvent actionEvent){
+        updateorinsert = 1;
+        tfFIO.setText(tvMainTableStudent.getSelectionModel().getSelectedItem().getFio());
+        tfAddress.setText(tvMainTableStudent.getSelectionModel().getSelectedItem().getAddress());
+    }
+
+    public void Cancelbtnclick(ActionEvent actionEvent){
+        updateorinsert = 0;
+        tfFIO.setText("");
+        tfAddress.setText("");
+
     }
 
     public  void CountrybtnClick(ActionEvent actionEvent) throws Exception{
@@ -181,6 +207,7 @@ public class MainFormController  implements Initializable {
         }
     }
 
+    //когда в комбобохе страна меняется
     public void CountryChange(){
         List<RegionEntity> lsRegion = regionServ.getRegionsInCountry(cbCountry.getSelectionModel().getSelectedItem());
 
@@ -192,6 +219,7 @@ public class MainFormController  implements Initializable {
         cbRegion.setItems(regionNamesObservableList);
     }
 
+    //когда в комбобохе регион меняется
     public void RegionChange(){
         List<CityEntity> lsCity = cityServ.getCitiesInRegion(cbRegion.getSelectionModel().getSelectedItem());
 
@@ -202,5 +230,6 @@ public class MainFormController  implements Initializable {
 
         cbCity.setItems(cityNamesObservableList);
     }
+
 
 }
